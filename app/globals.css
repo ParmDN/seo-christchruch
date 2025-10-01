@@ -24,3 +24,163 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ==== Homepage 4: Services section exact styles ==== */
+#services .soft-shadow {
+  background: #eaf1ff; /* light bluish card */
+  border-radius: 16px;
+}
+#services .p-30 { padding: 30px; }
+#services h3 { margin-bottom: 10px; }
+#services p { color: #6b7280; /* gray-500 */ }
+
+#services .rounded-1 { border-radius: 12px; }
+#services .d-inline-flex.rounded-1 {
+  width: 64px; height: 64px; border-radius: 12px; /* icon square */
+}
+#services .d-inline-flex i { font-size: 24px; }
+
+#services .btn-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0,0,0,.15);
+  color: inherit;
+}
+#services .btn-plus i { font-size: 14px; }
+
+/* ==== Process Section styles ( steps) ==== */
+#process { padding-top: 20px; }
+#process .process-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+#process .process-card h5 { margin: 0 0 6px; font-weight: 700; }
+#process .process-card p { margin: 0; color: #6b7280; }
+
+#process .process-badge {
+  width: 50px;
+  height: 50px;
+  padding: 15px 20px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #2f7cff 0%, #16b8ff 100%);
+  color: #fff; font-weight: 700; font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 16px rgba(47,124,255,0.35);
+}
+
+#process .process-watermark {
+  color: rgba(0, 0, 0, .06);
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1;
+    position: absolute;
+    bottom: 0px;
+    right: 9px;
+}
+
+
+/* ==== Features Section (Auckland) ==== */
+#features {
+  background: #eef5ff; /* light bluish like screenshot */
+}
+#features .soft-shadow-sm { box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+#features .icon-badge {
+  width: 28px; height: 28px;
+  border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center;
+  color: #fff;
+}
+#features .bg-gradient {
+  background: linear-gradient(180deg,#7b61ff 0%, #b455ff 100%);
+}
+#features .display-6 { font-size: 40px; line-height: 1.2; }
+
+#features .feature-item { background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 8px 20px rgba(0,0,0,.06); }
+#features .feature-item h4 { margin: 12px 0 6px; font-weight: 800; color: #1f2937; }
+#features .feature-item p { margin: 0; color: #6b7280; }
+
+#features .icon-circle { width: 54px; height: 54px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 8px 16px rgba(0,0,0,.12); }
+#features .icon-blue { background: radial-gradient(100% 100% at 70% 0%, #34b3ff 0%, #1976ff 100%); }
+#features .icon-orange { background: radial-gradient(100% 100% at 70% 0%, #ffb14a 0%, #ff6a2b 100%); }
+#features .icon-green { background: radial-gradient(100% 100% at 70% 0%, #6be080 0%, #17b26a 100%); }
+#features .icon-purple { background: radial-gradient(100% 100% at 70% 0%, #b06cff 0%, #6a35ff 100%); }
+
+#features .color-underline { display:block; width:40px; height:4px; border-radius:4px; margin:6px 0 10px; }
+#features .color-blue { background:#1976ff; }
+#features .color-green { background:#17b26a; }
+#features .color-purple { background:#6a35ff; }
+#process .process-card .d-flex{
+  white-space: normal !important;
+  ;
+}
+
+/* ==== Contact Section (Get In Touch) ==== */
+#contact .contact-info-card{
+  background:#4878ff; /* blue panel */
+  border-radius:18px;
+  padding:28px;
+  color:#fff;
+  box-shadow:0 12px 30px rgba(72,120,255,.35);
+}
+#contact .contact-info-card a{ color:#fff; text-decoration: none; }
+#contact .contact-info-card a:hover{ color:#fff; text-decoration: underline; }
+#contact .info-item{ display:flex; align-items:center; gap:16px; margin-bottom:22px; }
+#contact .info-item .info-icon{ width:48px; height:48px; border-radius:12px; background:#fff; color:#4878ff; display:flex; align-items:center; justify-content:center; font-size:20px; }
+#contact .info-item .fw-700{ font-weight:700; }
+
+#contact .contact-form-card{
+  background:#d9e6ff; /* light blue */
+  border-radius:18px;
+  padding:22px;
+}
+#contact .contact-input{ border-radius:10px; border:0; padding:12px 14px; background:#fff; }
+#contact select.contact-input{ padding-right:36px; }
+#contact textarea.contact-input{ resize:vertical; }
+#contact .btn-main{ background:#5a7bff; border:0; }
+#contact .btn-main:hover{ filter:brightness(.95); }
+
+/* ==== Testimonials Panel ==== */
+#testimonials .testimonials-panel{ background:#dfe9ff; border-radius:16px; padding:28px; }
+#testimonials .testimonial-copy .quote-icon{ color:#3a66ff; font-size:32px; margin-bottom:10px; display:inline-block; }
+#testimonials .testimonial-copy .author{ color:#6b7280; display:block; }
+#testimonials .testimonial-copy .dots{ margin-top:14px; }
+#testimonials .testimonial-copy .dot{ width:6px; height:6px; border-radius:9999px; background:#a7b7e6; display:inline-block; margin-right:6px; }
+#testimonials .testimonial-copy .dot.active{ background:#5676e6; }
+#testimonials .ratings-wrap .rating-title{ font-weight:800; color:#1f2937; }
+#testimonials .ratings-wrap .stars{ color:#ffb400; }
+
+/* Ratings blocks (Trustpilot & Google) */
+#testimonials .de-rating-ext { display:flex; flex-direction:column; align-items:center; gap:6px; }
+#testimonials .de-rating-ext .d-stars i { color:#ffb400; margin:0 2px; }
+#testimonials .w-100px { width:100px; height:auto; }
+#testimonials .fs-24 { font-size:24px; }
+#testimonials .fs-18 { font-size:18px; }
+#testimonials .fs-14 { font-size:14px; }
+
+#contact_form  textarea.form-control.contact-input {
+  height: 90px;
+}
+
+.subtitle.id-color {
+  background: #4878ff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+.btn-main {
+  border-radius: 8px !important;
+}
+
+section {
+  padding: 70px 0 70px 0 !important;
+} 
