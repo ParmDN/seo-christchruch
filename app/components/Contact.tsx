@@ -1,4 +1,46 @@
+"use client"
+import { useState } from "react"
+
 export default function Contact() {
+  const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (loading) return
+    setStatus(null)
+    setLoading(true)
+
+    const form = e.currentTarget
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      topic: form.topic.value,
+      message: form.message.value,
+    }
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      const result = await res.json().catch(() => ({ message: "Unexpected response" }))
+      if (!res.ok) {
+        setStatus(result?.message || "Failed to send message.")
+        return
+      }
+      setStatus(result.message || "Message sent successfully!")
+      form.reset()
+    } catch (err) {
+      console.error(err)
+      setStatus("Failed to send message.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <section id="contact" className="pt-2 pb-5">
       <div className="container">
@@ -39,13 +81,13 @@ export default function Contact() {
           {/* Right form card */}
           <div className="col-lg-7">
             <div className="contact-form-card">
-              <form name="contactForm" id="contact_form" method="post" action="#">
+              <form id="contact_form" onSubmit={handleSubmit}>
                 <div className="row g-3">
                   <div className="col-md-6">
-                    <input type="text" name="name" className="form-control contact-input" placeholder="Your Name" />
+                    <input type="text" name="name" className="form-control contact-input" placeholder="Your Name" required />
                   </div>
                   <div className="col-md-6">
-                    <input type="email" name="email" className="form-control contact-input" placeholder="Your Email" />
+                    <input type="email" name="email" className="form-control contact-input" placeholder="Your Email" required />
                   </div>
                   <div className="col-md-6">
                     <input type="text" name="phone" className="form-control contact-input" placeholder="Phone Number" />
@@ -59,11 +101,18 @@ export default function Contact() {
                     </select>
                   </div>
                   <div className="col-12">
-                    <textarea name="message" className="form-control contact-input" rows={5} placeholder="Message"></textarea>
+                    <textarea name="message" className="form-control contact-input" rows={5} placeholder="Message" required></textarea>
                   </div>
                   <div className="col-12 text-end">
-                    <button type="submit" className="btn-main rounded-pill px-4"><span>Send Message</span></button>
+                    <button type="submit" className="btn-main rounded-pill px-4" disabled={loading}>
+                      <span>{loading ? "Sending..." : "Send Message"}</span>
+                    </button>
                   </div>
+                  {status && (
+                    <div className="col-12">
+                      <div className="alert alert-info" role="status">{status}</div>
+                    </div>
+                  )}
                 </div>
               </form>
             </div>
@@ -71,5 +120,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
+  )
 }
