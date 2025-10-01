@@ -85,7 +85,7 @@ Reply: ${replyMailto}
       },
       body: JSON.stringify({
         from: RESEND_FROM,
-        to: [RESEND_TO],
+        to: ["info@seocompanychristchurch.co.nz"],
         cc: ["web@digitalneighbour.co.nz"],
         subject: `New Contact Form Message from ${safeName}`,
         reply_to: email,
