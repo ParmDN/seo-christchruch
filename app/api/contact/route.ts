@@ -1,5 +1,13 @@
 import { NextResponse } from "next/server"
 
+function corsHeaders(origin?: string) {
+  return {
+    "Access-Control-Allow-Origin": origin || "*",
+    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  }
+}
+
 function esc(input: string) {
   return input
     .replace(/&/g, "&amp;")
@@ -65,7 +73,7 @@ Reply: ${replyMailto}
       // In dev, surface a clearer error. In prod, this will be a 500.
       return NextResponse.json(
         { message: "Email service not configured. Please set RESEND_API_KEY (and optionally RESEND_FROM, RESEND_TO)." },
-        { status: 500 }
+        { status: 500, headers: corsHeaders(request.headers.get("origin") || undefined) }
       )
     }
 
@@ -89,16 +97,37 @@ Reply: ${replyMailto}
     if (!resendRes.ok) {
       const errText = await resendRes.text().catch(() => "")
       console.error("Resend error:", errText)
-      return NextResponse.json({ message: "Failed to send message." }, { status: 502 })
+      return NextResponse.json(
+        { message: "Failed to send message." },
+        { status: 502, headers: corsHeaders(request.headers.get("origin") || undefined) }
+      )
     }
 
-    return NextResponse.json({ message: "Message sent successfully!" }, { status: 200 })
+    return NextResponse.json(
+      { message: "Message sent successfully!" },
+      { status: 200, headers: corsHeaders(request.headers.get("origin") || undefined) }
+    )
   } catch (error) {
     console.error("Contact route error:", (error as Error).message)
-    return NextResponse.json({ message: "Failed to send message." }, { status: 500 })
+    return NextResponse.json(
+      { message: "Failed to send message." },
+      { status: 500, headers: corsHeaders() }
+    )
   }
 }
 
-export async function GET() {
-  return NextResponse.json({ message: "Method not allowed" }, { status: 405 })
+export async function GET(request: Request) {
+  // Health check / simple OK for tools that ping the endpoint
+  return NextResponse.json(
+    { message: "Contact endpoint OK. Use POST to submit." },
+    { status: 200, headers: corsHeaders(request.headers.get("origin") || undefined) }
+  )
+}
+
+export async function OPTIONS(request: Request) {
+  // CORS preflight support
+  return new NextResponse(null, {
+    status: 204,
+    headers: corsHeaders(request.headers.get("origin") || undefined),
+  })
 }
