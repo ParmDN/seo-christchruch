@@ -47,7 +47,9 @@ export default function Partners() {
               </div>
               <div className="col-md-3 col-6">
                 <div className="text-center">
-                  <img src="/assets/seoly/tiktok-marketing-partners.webp" className="w-50" alt="TikTok Partner" />
+                  <span className="d-inline-flex align-items-center justify-content-center" style={{width: '80px', height: '80px', borderRadius: '12px', background: '#1877F2', color: '#fff'}}>
+                    <i className="fa-brands fa-facebook-f" style={{fontSize: '36px'}} aria-label="Facebook"></i>
+                  </span>
                 </div>
               </div>
             </div>
